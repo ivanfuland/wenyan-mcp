@@ -1,11 +1,10 @@
 {
-  "name": "wenyan-mcp",
+  "name": "wenyan-markdown-renderer",
   "version": "0.1.0",
-  "description": "MCP server for Wenyan, a Markdown formatting tool that allows AI assistants to apply elegant built-in themes and publish articles directly to 微信公众号.",
+  "description": "A Markdown formatting tool that applies elegant built-in themes to Markdown content.",
   "private": true,
   "type": "module",
   "bin": {
-    "wenyan-mcp": "./dist/index.js",
     "wenyan-api": "./dist/api-cli.js"
   },
   "files": [
@@ -15,13 +14,11 @@
     "build": "tsc -b && npm run copy-assets",
     "copy-assets": "node scripts/copy-assets.js",
     "watch": "tsc --watch",
-    "inspector": "pnpx @modelcontextprotocol/inspector",
-    "test": "pnpx vitest run",
-    "api": "tsc -b && npm run copy-assets && node dist/api-cli.js",
+    "test": "vitest run",
+    "start": "tsc -b && npm run copy-assets && node dist/api-cli.js",
     "test-page": "node dist/test-cli.js"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "0.6.0",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "css-tree": "^3.1.0",

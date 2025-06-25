@@ -31,7 +31,7 @@ npm install
 ### 启动 API 服务
 
 ```bash
-npm run api
+npm start
 ```
 
 服务将在 http://localhost:3000 启动。
@@ -93,7 +93,7 @@ Content-Type: application/json
 
 1. 首先启动API服务：
 ```bash
-npm run api
+npm start
 ```
 
 2. 在另一个终端中启动测试页面：
@@ -150,12 +150,6 @@ $$
 ```markdown
 ![alt文本](图片链接){width=300 height=200}
 ```
-
----
-
-## 赞助
-
-如果您觉得这个项目不错，可以给我家猫咪买点罐头吃。[喂猫❤️](https://yuzhi.tech/sponsor)
 
 ---
 
