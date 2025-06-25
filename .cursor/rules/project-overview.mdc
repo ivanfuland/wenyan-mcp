@@ -3,26 +3,29 @@ description:
 globs:
 alwaysApply: false
 ---
-# 文颜 MCP Server 项目概述
+# Markdown渲染API项目概述
 
-文颜 MCP Server 是一个基于模型上下文协议（Model Context Protocol, MCP）的服务器组件，支持将 Markdown 格式的文章发布至微信公众号草稿箱，并使用内置主题系统进行排版。
+Markdown渲染API是一个简单的服务，支持将Markdown格式的文章使用优雅的内置主题进行排版，生成美观的HTML代码。本项目提供RESTful API接口，适合集成到各种应用场景中，特别是n8n工作流。
 
-## 主要功能
+## 核心功能
 
 - 列出并选择支持的文章主题
-- 使用内置主题对 Markdown 内容排版
-- 发布文章到微信公众号草稿箱
-- 自动上传本地或网络图片
+- 使用内置主题对Markdown内容排版
+- 支持代码高亮、数学公式和自定义图片属性
+- 提供RESTful API接口
 
-## 核心文件
+## 主要文件
 
-- [src/index.ts](mdc:src/index.ts) - 主入口文件，实现MCP服务器及工具定义
+- [src/api.ts](mdc:src/api.ts) - API服务实现，提供主题列表和渲染接口
+- [src/api-cli.ts](mdc:src/api-cli.ts) - API服务命令行入口
+- [src/main.js](mdc:src/main.js) - Markdown渲染核心功能
 - [src/theme.ts](mdc:src/theme.ts) - 主题定义和管理
-- [src/publish.ts](mdc:src/publish.ts) - 微信公众号发布功能
-- [src/main.js](mdc:src/main.js) - Markdown渲染和处理功能
+- [src/test-page.js](mdc:src/test-page.js) - 测试页面实现
 
-## 环境变量
+## Docker部署
 
-- `WECHAT_APP_ID` - 微信公众号平台的App ID
-- `WECHAT_APP_SECRET` - 微信平台的App Secret
-- `HOST_IMAGE_PATH` - 宿主机图片目录（Docker模式下）
+项目支持Docker部署，可以轻松集成到n8n环境中：
+
+- [Dockerfile](mdc:Dockerfile) - Docker镜像构建配置
+- [docker-compose.yml](mdc:docker-compose.yml) - Docker Compose配置
+- [n8n-integration.md](mdc:n8n-integration.md) - n8n集成指南

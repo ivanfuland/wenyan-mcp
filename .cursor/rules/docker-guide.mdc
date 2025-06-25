@@ -1,0 +1,51 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# Docker部署指南
+
+Markdown渲染API支持Docker部署，可以轻松集成到各种环境中，特别是n8n工作流平台。
+
+## Docker镜像构建
+
+项目提供了完整的Docker配置：
+
+- [Dockerfile](mdc:Dockerfile) - 定义了基于Node.js的镜像构建过程
+- [docker-compose.yml](mdc:docker-compose.yml) - 提供了与n8n集成的配置
+
+## 部署方式
+
+### 方法一：使用Docker Compose（推荐）
+
+适合已经使用Docker运行n8n的环境：
+
+```bash
+# 确保n8n网络已存在
+docker network ls | grep n8n-network
+
+# 构建并启动服务
+docker-compose up -d
+```
+
+### 方法二：直接构建Docker镜像
+
+手动构建和运行Docker容器：
+
+```bash
+# 构建镜像
+docker build -t markdown-renderer .
+
+# 运行容器
+docker run -d --name markdown-renderer -p 3000:3000 markdown-renderer
+```
+
+## n8n集成
+
+详细的n8n集成指南请参考：[n8n-integration.md](mdc:n8n-integration.md)
+
+主要集成点：
+
+1. 通过HTTP Request节点调用API
+2. 在工作流中处理渲染结果
+3. 将HTML内容用于邮件发送等场景

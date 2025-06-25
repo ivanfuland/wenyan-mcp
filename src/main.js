@@ -185,10 +185,10 @@ export async function renderMarkdown(content, themeId) {
     const highlightCss = await readFile(highlightCssPath, "utf8");
     const macStyleCssPath = join(__dirname, "mac_style.css");
     const macStyleCss = await readFile(macStyleCssPath, "utf8");
-    return await getContentForGzh(htmlWithMath, customCss, highlightCss, macStyleCss);
+    return await renderHtmlWithStyles(htmlWithMath, customCss, highlightCss, macStyleCss);
 }
 
-async function getContentForGzh(html, customCss, highlightCss, macStyleCss) {
+async function renderHtmlWithStyles(html, customCss, highlightCss, macStyleCss) {
     const ast = csstree.parse(customCss, {
         context: "stylesheet",
         positions: false,
@@ -277,7 +277,7 @@ async function getContentForGzh(html, customCss, highlightCss, macStyleCss) {
                 str.replace(/\s/g, "&nbsp;")
             );
     });
-    // 公众号不支持css伪元素，将伪元素样式提取出来拼接成一个span
+    // 将CSS伪元素转换为实际元素以确保样式正确显示
     elements = wenyan.querySelectorAll(
         "h1, h2, h3, h4, h5, h6, blockquote, pre"
     );

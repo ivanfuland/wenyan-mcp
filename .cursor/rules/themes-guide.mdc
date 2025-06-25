@@ -5,24 +5,22 @@ alwaysApply: false
 ---
 # 主题系统指南
 
-文颜 MCP Server 提供了多种内置主题，用于美化 Markdown 文章的排版效果。
+Markdown渲染API提供了多种内置主题，用于美化Markdown文章的排版效果。
 
 ## 可用主题
 
-主题定义在 [src/theme.ts](mdc:src/theme.ts) 文件中，包括：
-
-- **Default** - 简洁经典的布局，适合长篇阅读
-- **OrangeHeart** - 充满活力的暖色调主题
-- **Rainbow** - 多彩活泼的清新布局
-- **Lapis** - 简约清新的蓝色调主题
-- **Pie** - 受 sspai.com 和 Misty 启发的现代风格主题
-- **Maize** - 清新明亮的淡黄色调主题
-- **Purple** - 简洁极简的紫色点缀主题
-- **phycat** - 物理猫-薄荷：清新的薄荷绿主题
+- **default** - 默认主题，简洁清晰的排版风格
+- **orangeheart** - 暖橙色调，活泼优雅
+- **rainbow** - 彩虹主题，色彩丰富
+- **lapis** - 清新蓝色调，简约现代
+- **pie** - 饼图主题，简洁明快
+- **maize** - 玉米黄主题，清新自然
+- **purple** - 紫色主题，简约优雅
+- **phycat** - 物理猫主题，薄荷绿色调
 
 ## 主题文件
 
-每个主题对应一个 CSS 文件，存放在 [src/themes](mdc:src/themes) 目录下：
+所有主题CSS文件存放在 [src/themes/](mdc:src/themes/) 目录下：
 
 - [src/themes/default.css](mdc:src/themes/default.css)
 - [src/themes/orangeheart.css](mdc:src/themes/orangeheart.css)
@@ -33,6 +31,17 @@ alwaysApply: false
 - [src/themes/purple.css](mdc:src/themes/purple.css)
 - [src/themes/phycat.css](mdc:src/themes/phycat.css)
 
-## 使用主题
+## 主题管理
 
-在调用 `publish_article` 工具时，可以通过 `theme_id` 参数指定要使用的主题。如果不指定，将默认使用 `default` 主题。
+主题定义和管理在 [src/theme.ts](mdc:src/theme.ts) 文件中，通过Theme接口定义主题属性。
+
+## 在API中使用
+
+在调用渲染API时，可以通过`themeId`参数指定使用的主题：
+
+```json
+{
+  "content": "# 标题\n\n正文内容",
+  "themeId": "rainbow"
+}
+```

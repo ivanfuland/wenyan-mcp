@@ -1,10 +1,8 @@
-# 文颜 Markdown 渲染器
-
-![logo](data/wenyan-mcp.png)
+# Markdown 渲染器 API
 
 ## 概述
 
-文颜 Markdown 渲染器是一个简单的服务，支持将 Markdown 格式的文章使用优雅的内置主题进行排版，生成美观的 HTML 代码。本项目基于 [文颜](https://yuzhi.tech/wenyan) 的主题系统，提供 RESTful API 接口。
+Markdown 渲染器是一个简单的服务，支持将 Markdown 格式的文章使用优雅的内置主题进行排版，生成美观的 HTML 代码。本项目提供 RESTful API 接口，适合集成到各种应用场景中。
 
 ## 功能特点
 
@@ -22,8 +20,8 @@
 确保已安装 [Node.js](https://nodejs.org/) 环境：
 
 ```bash
-git clone https://github.com/caol64/wenyan-mcp.git
-cd wenyan-mcp
+git clone https://github.com/your-username/markdown-renderer.git
+cd markdown-renderer
 
 npm install
 ```

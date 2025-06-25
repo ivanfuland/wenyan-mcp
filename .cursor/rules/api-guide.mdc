@@ -1,0 +1,74 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# API使用指南
+
+Markdown渲染API提供了简单易用的RESTful接口，用于获取主题列表和渲染Markdown内容。
+
+## API端点
+
+### 1. 获取主题列表
+
+**请求**:
+```
+GET /api/themes
+```
+
+**响应**:
+```json
+[
+  {
+    "id": "default",
+    "name": "Default",
+    "description": "A clean, classic layout ideal for long-form reading."
+  },
+  {
+    "id": "orangeheart",
+    "name": "OrangeHeart",
+    "description": "A vibrant and elegant theme in warm orange tones."
+  },
+  ...
+]
+```
+
+### 2. 渲染Markdown内容
+
+**请求**:
+```
+POST /api/render
+Content-Type: application/json
+
+{
+  "content": "# 标题\n\n正文内容",
+  "themeId": "default"
+}
+```
+
+**参数说明**:
+- `content`: Markdown内容（必填）
+- `themeId`: 主题ID（可选，默认为"default"）
+
+**响应**:
+```json
+{
+  "title": "标题",
+  "html": "<div id=\"wenyan\">...</div>"
+}
+```
+
+## 实现文件
+
+API实现主要分布在以下文件中：
+
+- [src/api.ts](mdc:src/api.ts) - API路由和处理逻辑
+- [src/api-cli.ts](mdc:src/api-cli.ts) - 命令行入口
+- [src/main.js](mdc:src/main.js) - Markdown渲染核心功能
+
+## 测试工具
+
+项目提供了可视化测试工具，用于验证渲染效果：
+
+- [src/test-page.js](mdc:src/test-page.js) - 测试页面实现
+- [src/test-cli.js](mdc:src/test-cli.js) - 测试页面命令行入口

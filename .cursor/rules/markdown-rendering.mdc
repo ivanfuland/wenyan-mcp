@@ -3,44 +3,63 @@ description:
 globs:
 alwaysApply: false
 ---
-# Markdown 渲染指南
+# Markdown渲染功能指南
 
-文颜 MCP Server 使用增强版的 Markdown 渲染器，支持代码高亮、数学公式和自定义图片属性等特性。
+Markdown渲染API使用增强版的Markdown渲染器，支持代码高亮、数学公式和自定义图片属性等特性。
 
-## 核心实现
+## 核心渲染功能
 
-Markdown 渲染功能主要在 [src/main.js](mdc:src/main.js) 中实现，使用以下库：
+核心渲染逻辑在 [src/main.js](mdc:src/main.js) 文件中实现，主要包括：
 
-- **marked** - 基础 Markdown 解析
-- **highlight.js** - 代码语法高亮
-- **mathjax-full** - 数学公式渲染
-- **jsdom** - DOM 操作
-- **css-tree** - CSS 解析和操作
+- Markdown解析和HTML生成
+- 代码语法高亮处理
+- 数学公式渲染（使用MathJax）
+- CSS样式应用与处理
+- 自定义图片属性支持
+
+## 主要函数
+
+- `initMarkdownRenderer()` - 初始化Markdown渲染器，配置扩展和选项
+- `handleFrontMatter()` - 处理Markdown文档的前置元数据
+- `renderMarkdown()` - 渲染Markdown为HTML，应用主题样式
+- `renderHtmlWithStyles()` - 处理HTML和CSS样式，生成最终输出
 
 ## 支持的特性
 
 ### 1. 代码高亮
 
-支持多种编程语言的语法高亮，使用 highlight.js 实现。可用的高亮样式存放在 [src/highlight/styles](mdc:src/highlight/styles) 目录。
+```python
+def hello_world():
+    print("Hello, World!")
+```
 
 ### 2. 数学公式
 
-支持 LaTeX 数学公式：
+行内公式：$E=mc^2$
 
-- 行内公式：`$...$` 或 `\(...\)`
-- 块级公式：`$$...$$` 或 `\[...\]`
+块级公式：
+$$
+\frac{d}{dx}e^x = e^x
+$$
 
 ### 3. 自定义图片属性
-
-扩展了 Markdown 图片语法，支持添加样式属性：
 
 ```markdown
 ![alt文本](图片链接){width=300 height=200}
 ```
 
-### 4. Frontmatter 处理
+### 4. Frontmatter
 
-支持解析文章头部的 frontmatter 元数据，提取标题、描述和封面图信息。
+支持YAML格式的frontmatter，可以定义文章标题、描述等元数据：
+
+```markdown
+---
+title: 文章标题
+description: 文章描述
+---
+
+正文内容...
+```
 
 ## 渲染流程
 

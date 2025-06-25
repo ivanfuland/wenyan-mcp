@@ -1,11 +1,11 @@
 {
-  "name": "wenyan-markdown-renderer",
+  "name": "markdown-renderer",
   "version": "0.1.0",
   "description": "A Markdown formatting tool that applies elegant built-in themes to Markdown content.",
   "private": true,
   "type": "module",
   "bin": {
-    "wenyan-api": "./dist/api-cli.js"
+    "markdown-api": "./dist/api-cli.js"
   },
   "files": [
     "dist"

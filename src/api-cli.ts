@@ -2,7 +2,7 @@
 
 import { startApiServer } from './api.js';
 
-console.log('启动文颜 Markdown 渲染 API 服务...');
+console.log('启动 Markdown 渲染 API 服务...');
 console.log('API服务将在 http://localhost:3000 运行');
 console.log('可以使用以下接口:');
 console.log('- GET /api/themes - 获取所有可用主题');

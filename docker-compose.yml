@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  markdown-renderer:
+    build: .
+    container_name: markdown-renderer
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
+    networks:
+      - n8n-network
+
+networks:
+  n8n-network:
+    name: n8n-network
+    external: true 
