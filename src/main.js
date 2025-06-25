@@ -177,22 +177,7 @@ export async function renderMarkdown(content, themeId) {
     const themeCssPath = join(__dirname, `themes/${themeId}.css`);
     const themeCss = await readFile(themeCssPath, "utf8");
     let customCss = replaceCSSVariables(themeCss);
-    customCss = modifyCss(customCss, {
-        '#wenyan pre code': [
-            {
-                property: 'font-family',
-                value: monospace,
-                append: true
-            }
-        ],
-        '#wenyan pre': [
-            {
-                property: 'font-size',
-                value: "12px",
-                append: true
-            }
-        ]
-    });
+    
     const highlightCssPath = join(
         __dirname,
         "highlight/styles/solarized-light.min.css"
