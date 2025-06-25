@@ -34,6 +34,26 @@ npm start
 
 服务将在 http://localhost:3000 启动。
 
+### Docker 部署
+
+本项目提供了完整的 Docker 支持，可以轻松在任何环境中部署。
+
+#### 使用 Docker Compose 部署（推荐）
+
+```bash
+docker-compose up -d
+```
+
+#### 使用 Docker 命令部署
+
+```bash
+# 构建镜像
+docker build -t markdown-renderer .
+
+# 运行容器
+docker run -d --name markdown-renderer -p 3050:3050 markdown-renderer
+```
+
 ### API 接口说明
 
 #### 1. 获取可用主题列表

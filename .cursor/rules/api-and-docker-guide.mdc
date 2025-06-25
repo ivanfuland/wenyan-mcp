@@ -1,0 +1,37 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# API and Docker Guide
+
+This document outlines the key components of the Markdown Renderer API and how to run it using Docker.
+
+## API Entrypoint
+
+The main API server is defined in `[src/api.ts](mdc:src/api.ts)`. It uses Express.js to create the server and define routes. The server is configured to listen on `0.0.0.0` at the port specified by the `PORT` environment variable, which defaults to `3050`.
+
+The command-line entrypoint for starting the server is `[src/api-cli.ts](mdc:src/api-cli.ts)`. This script imports and starts the server from `[src/api.ts](mdc:src/api.ts)`.
+
+## Docker Setup
+
+The project is designed to be containerized using Docker for easy deployment.
+
+- The Docker build configuration is defined in `[Dockerfile](mdc:Dockerfile)`. It uses a `node:16-alpine` base image, copies the necessary project files, installs dependencies, and compiles the TypeScript code.
+- For multi-container setups, you can use `[docker-compose.yml](mdc:docker-compose.yml)`.
+
+### Building and Running the Container
+
+To build and run the Docker container for this project, use the following commands from the project root:
+
+1.  **Build the Docker image:**
+    ```bash
+    docker build -t markdown-renderer .
+    ```
+
+2.  **Run the container:**
+    ```bash
+    docker run -d --name markdown-renderer -p 3050:3050 markdown-renderer
+    ```
+
+After running the container, the API will be accessible at `http://localhost:3050`.

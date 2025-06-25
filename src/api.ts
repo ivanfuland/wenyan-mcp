@@ -68,14 +68,9 @@ router.get('/themes', (req, res) => {
 app.use('/api', router);
 
 // 启动服务器
-const PORT = process.env.PORT || 3000;
+const PORT = parseInt(process.env.PORT || '3050', 10);
 export function startApiServer() {
-  app.listen(PORT, () => {
-    console.log(`API服务器运行在 http://localhost:${PORT}`);
+  app.listen(PORT, '0.0.0.0', () => {
+    console.log(`API服务器运行在 http://0.0.0.0:${PORT}`);
   });
 }
-
-// 如果直接运行此文件
-if (import.meta.url.endsWith('api.js')) {
-  startApiServer();
-} 

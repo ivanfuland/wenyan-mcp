@@ -5,7 +5,7 @@ services:
     build: .
     container_name: markdown-renderer
     ports:
-      - "3000:3000"
+      - "3050:3050"
     restart: unless-stopped
     networks:
       - n8n-network
