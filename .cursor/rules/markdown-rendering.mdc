@@ -1,0 +1,52 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# Markdown 渲染指南
+
+文颜 MCP Server 使用增强版的 Markdown 渲染器，支持代码高亮、数学公式和自定义图片属性等特性。
+
+## 核心实现
+
+Markdown 渲染功能主要在 [src/main.js](mdc:src/main.js) 中实现，使用以下库：
+
+- **marked** - 基础 Markdown 解析
+- **highlight.js** - 代码语法高亮
+- **mathjax-full** - 数学公式渲染
+- **jsdom** - DOM 操作
+- **css-tree** - CSS 解析和操作
+
+## 支持的特性
+
+### 1. 代码高亮
+
+支持多种编程语言的语法高亮，使用 highlight.js 实现。可用的高亮样式存放在 [src/highlight/styles](mdc:src/highlight/styles) 目录。
+
+### 2. 数学公式
+
+支持 LaTeX 数学公式：
+
+- 行内公式：`$...$` 或 `\(...\)`
+- 块级公式：`$$...$$` 或 `\[...\]`
+
+### 3. 自定义图片属性
+
+扩展了 Markdown 图片语法，支持添加样式属性：
+
+```markdown
+![alt文本](图片链接){width=300 height=200}
+```
+
+### 4. Frontmatter 处理
+
+支持解析文章头部的 frontmatter 元数据，提取标题、描述和封面图信息。
+
+## 渲染流程
+
+1. 解析 frontmatter 获取元数据
+2. 使用 marked 将 Markdown 转换为 HTML
+3. 使用 MathJax 渲染数学公式
+4. 应用选定主题的 CSS 样式
+5. 添加代码高亮样式
+6. 处理图片上传（本地或网络图片）

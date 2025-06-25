@@ -1,0 +1,28 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# 文颜 MCP Server 项目概述
+
+文颜 MCP Server 是一个基于模型上下文协议（Model Context Protocol, MCP）的服务器组件，支持将 Markdown 格式的文章发布至微信公众号草稿箱，并使用内置主题系统进行排版。
+
+## 主要功能
+
+- 列出并选择支持的文章主题
+- 使用内置主题对 Markdown 内容排版
+- 发布文章到微信公众号草稿箱
+- 自动上传本地或网络图片
+
+## 核心文件
+
+- [src/index.ts](mdc:src/index.ts) - 主入口文件，实现MCP服务器及工具定义
+- [src/theme.ts](mdc:src/theme.ts) - 主题定义和管理
+- [src/publish.ts](mdc:src/publish.ts) - 微信公众号发布功能
+- [src/main.js](mdc:src/main.js) - Markdown渲染和处理功能
+
+## 环境变量
+
+- `WECHAT_APP_ID` - 微信公众号平台的App ID
+- `WECHAT_APP_SECRET` - 微信平台的App Secret
+- `HOST_IMAGE_PATH` - 宿主机图片目录（Docker模式下）

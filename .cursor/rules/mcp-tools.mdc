@@ -1,0 +1,53 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# MCP 工具指南
+
+文颜 MCP Server 提供了两个主要工具，可通过 MCP 协议调用。
+
+## 可用工具
+
+在 [src/index.ts](mdc:src/index.ts) 中定义了以下工具：
+
+### 1. list_themes
+
+列出所有可用于发布文章的主题。
+
+**输入参数**：无需参数
+
+**输出**：返回可用主题列表，每个主题包含 ID、名称和描述
+
+### 2. publish_article
+
+使用选定主题格式化 Markdown 文章并发布到微信公众号草稿箱。
+
+**输入参数**：
+- `content` (必填) - 原始 Markdown 内容，需保留 frontmatter（如果有）
+- `theme_id` (可选) - 使用的主题 ID（如 default, orangeheart, rainbow 等）
+
+**输出**：
+成功发布后返回消息，包含生成的 media_id
+
+## Frontmatter 要求
+
+Markdown 文章应包含以下 frontmatter：
+
+```md
+---
+title: 文章标题
+cover: /path/to/cover.jpg
+---
+```
+
+- `title` - 文章标题（必填）
+- `cover` - 文章封面图路径（可选，如果正文中有图片可省略）
+
+## 调试工具
+
+可使用 MCP Inspector 进行调试：
+
+```bash
+npx @modelcontextprotocol/inspector
+```
